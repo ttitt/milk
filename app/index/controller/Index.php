@@ -14,17 +14,18 @@ class Index extends Controller
 
     public function index()
     {
-        echo 'hello world';
-        echo '<br>';
-        $data = [
-            'username' => '冯毅',
-            'password' => '56789'
-        ];
-        Session::set('name', $data);
-        Session::set('info', '123435');
-        // Session::clear();
-        // Session::destroy();
-        $res = Session::get();
+        view::display();
+        // echo 'hello world';
+        // echo '<br>';
+        // $data = [
+        //     'username' => '冯毅',
+        //     'password' => '56789'
+        // ];
+        // Session::set('name', $data);
+        // Session::set('info', '123435');
+        // // Session::clear();
+        // // Session::destroy();
+        // $res = Session::get();
         // Session::delete('name');
         // halt($res);
         // $this->view->assign('arr', $data);

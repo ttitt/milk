@@ -10,15 +10,13 @@ class Test2
     private $b;
     protected $c;
 
-    public function beforeHandle($request)
+    public function beforeHandle()
     {
         echo '我是路由前置中间件';
-        return $request;
     }
 
-    public function afterHandle($request)
+    public function afterHandle()
     {
         echo '我是路由后置中间件';
-        return $request;
     }
 }

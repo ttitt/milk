@@ -2,6 +2,7 @@
 
 namespace app\index\middleware;
 
+use Milk\Request;
 
 class Test
 {
@@ -10,15 +11,13 @@ class Test
     private $b;
     protected $c;
 
-    public function beforeHandle($request)
+    public function beforeHandle()
     {
         echo '我是前置中间件';
-        return $request;
     }
 
-    public function afterHandle($request)
+    public function afterHandle()
     {
         echo '我是后置中间件';
-        return $request;
     }
 }

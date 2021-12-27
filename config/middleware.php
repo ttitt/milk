@@ -11,11 +11,17 @@
 return [
     // 注册全局中间件
     'all' => [
-        // 'app\index\middleware\Test'
+        'app\index\middleware\Test'
+    ],
+    // 全局中间件过滤（仅在开启全局中间件有效）
+    'all_filter' => [
+        'index\test\index2',
+        // 'index\index\*',
+        // 'index\*'
     ],
     // 注册路由中间件
     'route' => [
-        'index\test\*' => 'app\index\middleware\Test2',
+        // 'index\test\*' => 'app\index\middleware\Test2',
         // 'index\index\index' => 'app\index\middleware\Test3'
     ]
 ];

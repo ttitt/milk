@@ -11,7 +11,7 @@ class Test extends Base
 
     public function index()
     {
-        $res = Session::get('name');
+        // $res = Session::get('name');
         echo '<br>';
         echo '123';
         echo '<br>';

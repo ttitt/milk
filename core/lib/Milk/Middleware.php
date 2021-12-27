@@ -17,25 +17,8 @@ class Middleware
      */
     public static function routeRegister($config, $func)
     {
-        $m = Request::getModule();
-        $c = Request::getController();
-        $a = Request::getAction();
-
         foreach ($config as $key => $value) {
-            $route = self::handleRoute(explode('\\', $key));
-            switch (count($route) <=> 2) {
-                case 1:
-                    $route === [$m, $c, $a] ? self::run($value, $func) : false;
-                    break;
-                case 0:
-                    $route === [$m, $c] ? self::run($value, $func) : false;
-                    break;
-                case -1:
-                    $route === [$m] ? self::run($value, $func) : false;
-                    break;
-                default:
-                    break;
-            }
+            !self::filter($key) ?: self::run($value, $func);
         }
     }
 
@@ -71,8 +54,38 @@ class Middleware
      */
     public static function register($config, $func)
     {
-        foreach ($config as $key => $value) {
-            self::run($value, $func);
+        $isRun = true;
+        if (count($config) != 0) {
+            foreach (self::getConfig('all_filter') as $key => $value) {
+                !self::filter($value) ?: $isRun = false;
+            }
+            if ($isRun) {
+                foreach ($config as $key => $value) {
+                    self::run($value, $func);
+                }
+            }
+        }
+    }
+
+    public static function filter($key)
+    {
+        $m = Request::getModule();
+        $c = Request::getController();
+        $a = Request::getAction();
+
+        $route = self::handleRoute(explode('\\', $key));
+        switch (count($route) <=> 2) {
+            case 1:
+                return $route === [$m, $c, $a] ? true : false;
+                break;
+            case 0:
+                return $route === [$m, $c] ? true : false;
+                break;
+            case -1:
+                return $route === [$m] ? true : false;
+                break;
+            default:
+                break;
         }
     }
 
@@ -81,6 +94,6 @@ class Middleware
         if (!method_exists($class, $func)) {
             throw new Exception("class {$class} has not " . $func . " method \r\n");
         }
-        call_user_func([new $class, $func], new Request());
+        call_user_func([new $class, $func]);
     }
 }
