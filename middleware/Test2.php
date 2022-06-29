@@ -1,6 +1,6 @@
 <?php
 
-namespace app\index\middleware;
+namespace middleware;
 
 
 class Test2

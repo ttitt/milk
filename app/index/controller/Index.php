@@ -70,7 +70,7 @@ class Index extends Controller
     public function getclass()
     {
         // app\middleware\CheckLogin
-        Middleware::getProperties('app\index\middleware\Test');
+        Middleware::getProperties('middleware\Test');
     }
     public function view()
     {

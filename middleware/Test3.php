@@ -1,10 +1,9 @@
 <?php
 
-namespace app\index\middleware;
+namespace middleware;
 
-use Milk\Request;
 
-class Test
+class Test3
 {
 
     public $a;
@@ -13,11 +12,11 @@ class Test
 
     public function beforeHandle()
     {
-        echo '我是前置中间件';
+        echo '我是路由前置中间件INDEX';
     }
 
     public function afterHandle()
     {
-        echo '我是后置中间件';
+        echo '我是路由后置中间件INDEX';
     }
 }

@@ -98,6 +98,14 @@ class Build extends Ram
         } else {
             $classNameFile = $QUERY_STRING;
             $classNameFile = str_replace(['s=//', HTML_EXT], ['', ''], $classNameFile);
+            // to array
+            $module = explode('/', $classNameFile);
+            if (count($module) < 3 && $module[0] != Config::get('app.default_module')) {
+                self::$module = empty($module[0]) ? Config::get('app.default_module') : $module[0];
+                self::$controller = empty($module[1]) ? Config::get('app.default_controller') : $module[1];
+                self::$action = empty($module[2]) ? Config::get('app.default_action') : $module[2];
+                $classNameFile = self::$module . '/' . self::$controller . '/' . self::$action;
+            }
         }
         return $classNameFile;
     }
