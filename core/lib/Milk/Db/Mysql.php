@@ -67,6 +67,11 @@ class Mysql extends Drive
         return static::register($name, Config::get('database.prefix'));
     }
 
+    public static function table($name)
+    {
+        return static::register($name);
+    }
+
     private static function register($name, $prefix = null)
     {
         if (!static::$instance instanceof self) {

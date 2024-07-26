@@ -54,6 +54,11 @@ class Request extends Ram
         return $data;
     }
 
+    public static function set($data)
+    {
+        self::isGet() ? $_GET = $data : $_POST = $data;
+    }
+
     public static function get($key = '')
     {
         if (isset($_GET['s'])) unset($_GET['s']);
